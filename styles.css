@@ -1,10 +1,11 @@
-/* Base page styling */
+/* Reset-ish */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Base */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background-color: #050814;
@@ -12,26 +13,37 @@ body {
   line-height: 1.6;
 }
 
-/* Layout for the whole page */
+a {
+  color: inherit;
+}
+
+/* Layout wrapper */
 .main-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Simple navigation (we'll expand later) */
+/* Header / nav */
 header {
-  padding: 1.5rem 2rem;
+  padding: 1.2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #112240;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(5, 8, 20, 0.9);
 }
 
 .logo {
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #64ffda;
+  font-size: 0.9rem;
 }
 
 nav a {
@@ -45,13 +57,9 @@ nav a:hover {
   color: #64ffda;
 }
 
-/* Hero section */
+/* Hero */
 .hero {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
+  padding: 4rem 2rem 3rem;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -59,13 +67,13 @@ nav a:hover {
 .hero-kicker {
   color: #64ffda;
   font-size: 0.85rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 }
 
 .hero-title {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
@@ -82,7 +90,6 @@ nav a:hover {
   margin-bottom: 2rem;
 }
 
-/* Buttons */
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -117,15 +124,7 @@ nav a:hover {
   color: #0a192f;
 }
 
-/* Simple footer */
-footer {
-  padding: 1rem 2rem;
-  text-align: center;
-  font-size: 0.8rem;
-  color: #8892b0;
-  border-top: 1px solid #112240;
-}
-/* Generic sections below the hero */
+/* Generic sections */
 .section {
   padding: 4rem 2rem;
   max-width: 960px;
@@ -134,10 +133,111 @@ footer {
 
 .section h2 {
   font-size: 1.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .section p {
   color: #8892b0;
   margin-bottom: 1rem;
+}
+
+/* Project cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #0b1020;
+  border: 1px solid #112240;
+  border-radius: 0.6rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(2, 12, 27, 0.7);
+}
+
+.card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.card p {
+  margin-bottom: 0.75rem;
+}
+
+.card-meta {
+  font-size: 0.85rem;
+  color: #a8b2d1;
+}
+
+.card-link {
+  font-size: 0.9rem;
+  color: #64ffda;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.skills-group h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.skills-group ul {
+  list-style: none;
+}
+
+.skills-group li {
+  color: #8892b0;
+  margin-bottom: 0.35rem;
+}
+
+/* Contact */
+.contact-list {
+  list-style: none;
+}
+
+.contact-list li {
+  margin-bottom: 0.5rem;
+  color: #8892b0;
+}
+
+.contact-list span {
+  font-weight: 600;
+  color: #ccd6f6;
+}
+
+/* Footer */
+footer {
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #8892b0;
+  border-top: 1px solid #112240;
+  margin-top: auto;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    margin-top: 0.75rem;
+  }
+
+  nav a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
 }
