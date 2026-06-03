@@ -1,0 +1,127 @@
+/* Base page styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #050814;
+  color: #f4f4f4;
+  line-height: 1.6;
+}
+
+/* Layout for the whole page */
+.main-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Simple navigation (we'll expand later) */
+header {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64ffda;
+}
+
+nav a {
+  margin-left: 1.5rem;
+  color: #ccd6f6;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+nav a:hover {
+  color: #64ffda;
+}
+
+/* Hero section */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.hero-kicker {
+  color: #64ffda;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: #a8b2d1;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text {
+  max-width: 650px;
+  color: #8892b0;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid #64ffda;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary {
+  background: #64ffda;
+  color: #0a192f;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #64ffda;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  background: #52e0c0;
+  color: #0a192f;
+}
+
+/* Simple footer */
+footer {
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #8892b0;
+  border-top: 1px solid #112240;
+}
