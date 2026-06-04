@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-terminal: var(--terminal);
+  --color-terminal-foreground: var(--terminal-foreground);
+  --color-neon: var(--neon);
+  --color-neon-glow: var(--neon-glow);
+  --color-warning: var(--warning);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: oklch(0.18 0.025 220);
+  --foreground: oklch(0.95 0.02 160);
+
+  --card: oklch(0.22 0.03 220);
+  --card-foreground: oklch(0.95 0.02 160);
+
+  --popover: oklch(0.22 0.03 220);
+  --popover-foreground: oklch(0.95 0.02 160);
+
+  --primary: oklch(0.82 0.18 165);
+  --primary-foreground: oklch(0.18 0.025 220);
+
+  --secondary: oklch(0.28 0.04 220);
+  --secondary-foreground: oklch(0.95 0.02 160);
+
+  --muted: oklch(0.26 0.03 220);
+  --muted-foreground: oklch(0.7 0.03 180);
+
+  --accent: oklch(0.55 0.13 160);
+  --accent-foreground: oklch(0.95 0.02 160);
+
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.32 0.04 200 / 60%);
+  --input: oklch(0.3 0.04 220);
+  --ring: oklch(0.82 0.18 165);
+
+  --terminal: oklch(0.14 0.02 220);
+  --terminal-foreground: oklch(0.92 0.16 160);
+  --neon: oklch(0.88 0.2 160);
+  --neon-glow: oklch(0.88 0.2 160 / 40%);
+  --warning: oklch(0.85 0.18 90);
+
+  --gradient-radial: radial-gradient(ellipse at top, oklch(0.28 0.08 160 / 0.35), transparent 60%);
+  --gradient-grid: linear-gradient(oklch(0.82 0.18 165 / 0.06) 1px, transparent 1px),
+                   linear-gradient(90deg, oklch(0.82 0.18 165 / 0.06) 1px, transparent 1px);
+
+  --shadow-neon: 0 0 24px var(--neon-glow), 0 0 60px oklch(0.82 0.18 165 / 0.18);
+  --shadow-card: 0 1px 0 oklch(1 0 0 / 0.04) inset, 0 12px 40px -16px oklch(0 0 0 / 0.6);
+
+  --transition-smooth: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html { color-scheme: dark; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image: var(--gradient-radial);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--neon-glow);
+    color: var(--color-foreground);
+  }
+
+  code, pre, .font-mono { font-family: var(--font-mono); }
+
+  h1, h2, h3, h4 { letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  .text-neon {
+    color: var(--neon);
+    text-shadow: 0 0 18px var(--neon-glow);
+  }
+  .border-neon { border-color: var(--neon); box-shadow: var(--shadow-neon); }
+  .bg-terminal { background-color: var(--terminal); }
+  .grid-bg {
+    background-image: var(--gradient-grid);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+  .shadow-neon { box-shadow: var(--shadow-neon); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .transition-smooth { transition: all var(--transition-smooth); }
+
+  .glitch { position: relative; display: inline-block; }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  .glitch::before {
+    color: var(--neon);
+    transform: translate(2px, 0);
+    mix-blend-mode: screen;
+    animation: glitch-x 4s infinite steps(2);
+  }
+  .glitch::after {
+    color: oklch(0.7 0.22 30);
+    transform: translate(-2px, 0);
+    mix-blend-mode: screen;
+    animation: glitch-x 5.5s infinite reverse steps(2);
+  }
+  @keyframes glitch-x {
+    0%, 92%, 100% { transform: translate(0,0); opacity: 0; }
+    93% { transform: translate(2px, -1px); opacity: .7; }
+    96% { transform: translate(-2px, 1px); opacity: .6; }
+  }
+
+  .blink::after {
+    content: "▮";
+    color: var(--neon);
+    margin-left: 0.25rem;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .scanlines::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      oklch(0 0 0 / 0.18) 3px
+    );
+    mix-blend-mode: multiply;
+  }
+}
